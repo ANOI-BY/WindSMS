@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SmsChatActivity"
+    android:background="@drawable/gradient_for_background">
+
+        <RelativeLayout
+            android:id="@+id/top_tool_bar_chat"
+            android:layout_width="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_height="50dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:background="@color/additional_white"
+                android:layout_marginTop="4dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/button_back_chat"
+                        android:layout_width="59dp"
+                        android:layout_height="46dp"
+                        android:src="@drawable/ic_arrow_left"
+                        android:background="@color/transparent"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:scaleX="1.2"
+                        android:scaleY="1.2"
+                        app:tint="#707070" />
+
+                    <TextView
+                        android:id="@+id/contact_name_chat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="46dp"
+                        android:layout_marginStart="60dp"
+                        android:fontFamily="@font/nunito_bold"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:text="Девушка"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:transitionName="ContactNameTransition"
+                        android:textSize="16sp"/>
+
+                    <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="46dp"
+                        android:background="@color/transparent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:src="@drawable/ic_dots_icon"
+                        android:layout_marginEnd="4dp"
+                        />
+
+                    <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="46dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@color/transparent"
+                        android:layout_marginEnd="47dp"
+                        android:src="@drawable/ic_search"
+
+                        app:tint="#AFAFAF" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:paddingTop="10dp"
+        android:id="@+id/msg_space_chat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/top_tool_bar_chat"
+        tools:listitem="@layout/chat_message_left"
+        android:layout_marginBottom="61dp"
+        />
+
+        <RelativeLayout
+            android:id="@+id/down_panel_chat"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentBottom="true"
+            >
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/main_text_edit_panel_chat"
+                android:layout_width="220dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="11dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="7dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginEnd="6dp"
+                android:background="@color/white"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/button_add_file"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_plus"
+                        android:background="@color/transparent"
+                        app:tint="#5668C0"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="9.5dp"
+                        android:layout_marginStart="15dp"
+                        />
+
+                    <ImageButton
+                        android:id="@+id/button_add_image"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_image_icon"
+                        android:layout_toEndOf="@id/button_add_file"
+                        android:layout_marginStart="24.5dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="9.5dp"
+                        app:tint="#5668C0"
+                        android:background="@color/transparent"
+                        />
+
+                    <EditText
+                        android:id="@+id/msg_text_chat"
+                        android:layout_width="144dp"
+                        android:layout_height="19dp"
+                        android:layout_toEndOf="@+id/button_add_image"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginStart="46.5dp"
+                        android:background="@color/transparent"
+                        android:hint="Введите текст"
+                        android:layout_alignParentBottom="true"
+                        android:textColorHint="#5668C0"
+                        android:layout_marginTop="15dp"
+                        android:layout_alignParentTop="true"
+                        android:fontFamily="@font/nunito"
+                        android:layout_toStartOf="@+id/button_file_chat"
+                        android:layout_marginEnd="27dp"
+                        android:textSize="14dp"
+                        android:minLines="1"
+                        />
+
+                    <ImageButton
+                        android:id="@+id/button_file_chat"
+                        android:layout_width="18dp"
+                        android:layout_height="20dp"
+                        android:layout_toStartOf="@+id/button_voice_chat"
+                        android:background="@color/transparent"
+                        android:src="@drawable/ic_paper_icon"
+                        app:tint="#5668C0"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginEnd="34dp"
+                        />
+
+                    <ImageButton
+                        android:id="@+id/button_voice_chat"
+                        android:layout_width="15dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@color/transparent"
+                        android:src="@drawable/ic_voice_icon"
+                        android:layout_marginEnd="24dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="15dp"
+
+                        app:tint="#5668C0" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+</RelativeLayout>

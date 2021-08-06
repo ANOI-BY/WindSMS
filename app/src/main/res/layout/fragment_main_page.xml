@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainPage"
+    android:background="@drawable/gradient_for_background">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/app_name_text_main_page"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="@string/app_name"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="49dp"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:fontFamily="@font/nunito_bold"
+                />
+
+            <RelativeLayout
+                android:id="@+id/search_panel_main_page"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/app_name_text_main_page"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="15dp"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/white"
+                    app:cardCornerRadius="100dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/search_image_main_page"
+                            android:layout_width="21dp"
+                            android:layout_height="21dp"
+                            android:src="@drawable/ic_search"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginStart="16dp"
+                            app:tint="#AFAFAF" />
+
+                        <EditText
+                            android:id="@+id/sms_search_text_main_page"
+                            android:layout_width="200dp"
+                            android:layout_height="19dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="13dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="13dp"
+                            android:layout_toStartOf="@+id/search_settings_main_page"
+                            android:layout_toEndOf="@+id/search_image_main_page"
+                            android:background="@color/transparent"
+                            android:fontFamily="@font/nunito_light"
+                            android:hint="Поиск сообщений..."
+                            android:singleLine="true"
+                            android:paddingStart="3dp"
+                            android:textColor="#AFAFAF"
+                            android:textSize="14sp" />
+
+                        <ImageButton
+                            android:id="@+id/search_settings_main_page"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentTop="true"
+                            android:background="@color/transparent"
+                            android:src="@drawable/ic_dots_icon"
+                            android:layout_marginEnd="19dp"
+                            />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tags_block_main_page"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/search_panel_main_page"
+                android:layout_marginTop="24dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="15.5dp"
+                android:layout_marginEnd="15.5dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tags_list_main_page"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    tools:listitem="@layout/tags_design_layout"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tags_block_main_page"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="29dp"
+                android:layout_marginEnd="15dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:backgroundTint="@color/white"
+                    app:cardCornerRadius="32dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:paddingTop="10dp"
+                        android:id="@+id/message_list_main_page"
+                        android:layout_width="match_parent"
+                        tools:listitem="@layout/message_layout"
+                        android:layout_height="match_parent"
+                        android:nestedScrollingEnabled="false"/>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+
+</FrameLayout>
