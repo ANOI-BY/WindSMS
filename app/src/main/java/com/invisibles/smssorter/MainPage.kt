@@ -18,6 +18,7 @@ import com.invisibles.smssorter.Adapters.TagsAdapter
 import com.invisibles.smssorter.Attributes.LogName
 import com.invisibles.smssorter.Models.Sender
 import com.invisibles.smssorter.Models.Tags
+import com.invisibles.smssorter.Tools.ConvertTools
 import com.invisibles.smssorter.Tools.SmsTools
 import java.util.*
 import kotlin.collections.ArrayList
@@ -120,7 +121,7 @@ class MainPage(private var appContext: Context) : Fragment() {
 
                     val searchResult = smsList.filter {
                         text in it.senderName.toLowerCase(Locale.ROOT) ||
-                                text in it.firstMessage.toLowerCase(Locale.ROOT) ||
+                                text in it.firstMessage.messageText.toLowerCase(Locale.ROOT) ||
                                 it.searchInMessages(text).isNotEmpty()
                     } as ArrayList<Sender>
 

@@ -9,6 +9,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.invisibles.smssorter.Models.SmsMessage
 import com.invisibles.smssorter.R
+import com.invisibles.smssorter.Tools.ConvertTools
 
 private const val MSG_TYPE_LEFT = 1
 private const val MSG_TYPE_RIGHT = 2
@@ -22,6 +23,7 @@ class ChatAddapter(private var data: ArrayList<SmsMessage>, private val context:
         val iconLetter: TextView = itemView.findViewById(R.id.message_left_icon_letter)
         val messageText: TextView = itemView.findViewById(R.id.message_left_msg_text)
         val textBLock: CardView = itemView.findViewById(R.id.message_left_text_block)
+        val time: TextView = itemView.findViewById(R.id.message_time)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,6 +43,8 @@ class ChatAddapter(private var data: ArrayList<SmsMessage>, private val context:
 
         holder.iconLetter.text = senderName[0].toString()
         holder.messageText.text = data[position].messageText
+        val date = ConvertTools.timestampToDate("HH:mm", data[position].messageTime)
+        holder.time.text = date
 
         if(data[position].messageType == MSG_TYPE_RIGHT){
             holder.textBLock.layoutParams.width = holder.messageText.layoutParams.width*10

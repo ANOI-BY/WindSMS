@@ -4,25 +4,26 @@ package com.invisibles.smssorter.Models
 data class Sender(var senderNumber: String,
                   var senderName: String) {
 
-    var firstMessage = ""
-        get() {
-            return messagesList.first().messageText
-        }
-    var lastMessage = ""
-        get(){
-            return messagesList.last().messageText
-        }
+    lateinit var firstMessage: SmsMessage
+    lateinit var lastMessage: SmsMessage
+
     var messagesList = arrayListOf<SmsMessage>()
+        set(value) {
+            field = value
+            lastMessage = value.last()
+            firstMessage = value.first()
+        }
 
 
     fun setMessages(messages: ArrayList<SmsMessage>){
         messagesList = messages
-        lastMessage = messagesList.last().messageText
+        lastMessage = messagesList.last()
     }
 
     fun addMessage(message: SmsMessage){
         messagesList.add(message)
-        lastMessage = message.messageText
+        lastMessage = messagesList.last()
+        firstMessage = messagesList.first()
     }
 
     fun clearMessages(){

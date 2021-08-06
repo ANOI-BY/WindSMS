@@ -34,7 +34,6 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="19dp"
-                android:layout_marginBottom="15dp"
                 android:fontFamily="@font/nunito_light"
                 android:textSize="16sp"
                 android:textColor="@color/black"
@@ -42,6 +41,18 @@
                 android:linksClickable="true"
                 android:autoLink="all"
                 android:textIsSelectable="true"
+                />
+
+            <TextView
+                android:id="@+id/message_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TimeBlock"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="2dp"
+                android:textColor="#AFAFAF"
+                android:layout_below="@id/message_left_msg_text"
                 />
         </RelativeLayout>
 

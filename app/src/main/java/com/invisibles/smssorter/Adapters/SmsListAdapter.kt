@@ -17,6 +17,7 @@ import com.invisibles.smssorter.Attributes.LogName
 import com.invisibles.smssorter.Models.Sender
 import com.invisibles.smssorter.R
 import com.invisibles.smssorter.SmsChatActivity
+import com.invisibles.smssorter.Tools.ConvertTools
 
 private val colorList = arrayListOf(
     "#FFB64B", "#A7FFB8", "#C1C9FF"
@@ -32,6 +33,7 @@ class SmsListAdapter(private var data: ArrayList<Sender>, private var context: C
         var firstLetter: TextView = itemView.findViewById(R.id.first_letter_msg_avatar)
         var circle: CardView = itemView.findViewById(R.id.card_view_msg)
         var notFound: TextView = itemView.findViewById(R.id.not_found_msg)
+        var time: TextView = itemView.findViewById(R.id.message_time)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -48,6 +50,8 @@ class SmsListAdapter(private var data: ArrayList<Sender>, private var context: C
             holder.messageText.visibility = View.GONE
             holder.notFound.visibility = View.VISIBLE
             holder.notFound.text = "Ничего не найдено!"
+            holder.time.visibility = View.GONE
+            holder.itemView.setOnClickListener {  }
 
         }
         else{
@@ -56,8 +60,11 @@ class SmsListAdapter(private var data: ArrayList<Sender>, private var context: C
             holder.firstLetter.text = data[position].senderName[0].toString().toUpperCase()
             holder.circle.setCardBackgroundColor(Color.parseColor(colorList.random()))
 
+            val date = ConvertTools.timestampToDate("HH:mm", data[position].firstMessage.messageTime)
+            holder.time.text = date
 
-            var text = data[position].firstMessage
+
+            var text = data[position].firstMessage.messageText
 
             if (text.length >= 77 && text[76].isDefined()) {
                 text = text.substring(0, 76) + "..."
@@ -91,6 +98,7 @@ class SmsListAdapter(private var data: ArrayList<Sender>, private var context: C
         holder.circle.visibility = View.VISIBLE
         holder.senderName.visibility = View.VISIBLE
         holder.messageText.visibility = View.VISIBLE
+        holder.time.visibility = View.VISIBLE
     }
 
     override fun getItemCount(): Int {
