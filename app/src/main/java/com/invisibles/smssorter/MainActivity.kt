@@ -1,18 +1,12 @@
 package com.invisibles.smssorter
 
-import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.telephony.SmsManager
-import android.util.Log
-import android.view.WindowManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import com.invisibles.smssorter.Attributes.LogName
 
 private const val REQUEST_CODE = 101
 
@@ -44,18 +38,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun init() {
 
-        smsManager = SmsManager.getDefault()
+        val intent = Intent(this, MainChatsScreen::class.java)
+        startActivity(intent)
+        finish()
 
-        setFragmentView(MainPage(this))
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
     }
 
 
-    private fun setFragmentView(fragment: Fragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.main_frame, fragment)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .commit()
-    }
 }

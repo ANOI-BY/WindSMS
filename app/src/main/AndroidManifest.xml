@@ -17,9 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SMSSorter">
-        <activity android:name=".SmsChatActivity"
-            android:windowSoftInputMode="adjustResize"/>
-
+        <activity android:name=".MainChatsScreen"></activity>
+        <activity
+            android:name=".SmsChatActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
@@ -29,7 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MainActivity" />
 
         <meta-data

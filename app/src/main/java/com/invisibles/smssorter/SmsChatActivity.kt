@@ -1,18 +1,19 @@
 package com.invisibles.smssorter
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.KeyEvent
+import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.invisibles.smssorter.Adapters.ChatAddapter
-import com.invisibles.smssorter.Attributes.LogName
 import com.invisibles.smssorter.Models.Sender
 import com.invisibles.smssorter.Models.SmsMessage
 import com.invisibles.smssorter.Tools.AnimationTools
@@ -31,6 +32,11 @@ class SmsChatActivity : AppCompatActivity() {
     private lateinit var rightDownPanel: RelativeLayout
     private lateinit var messageChatList: RecyclerView
     private lateinit var chatAddapter: ChatAddapter
+    private lateinit var searchButton: ImageButton
+    private lateinit var standartTopPanel: RelativeLayout
+    private lateinit var searchTopPanel: RelativeLayout
+    private lateinit var searchField: EditText
+    private var isSearch = false
     private var intForUp: Int = 0
     private var mainPanelHeight: Int = 0
     private var rightDownPanelHeight: Int = 0
@@ -47,9 +53,21 @@ class SmsChatActivity : AppCompatActivity() {
 
     private fun setupEvents() {
         buttonBack.setOnClickListener {
-            onBackPressed()
-        }
 
+            if (isSearch){
+
+                searchTopPanel.visibility = View.GONE
+                standartTopPanel.visibility = View.VISIBLE
+                searchField.clearFocus()
+                keyboardControl(false)
+                isSearch = false
+
+
+            }
+            else {
+                onBackPressed()
+            }
+        }
 
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -109,6 +127,30 @@ class SmsChatActivity : AppCompatActivity() {
             }
 
         })
+
+        searchButton.setOnClickListener {
+
+            standartTopPanel.visibility = View.GONE
+            searchTopPanel.visibility = View.VISIBLE
+            searchField.requestFocus()
+            searchField.isFocusableInTouchMode = true
+            keyboardControl(true)
+            isSearch = true
+
+
+        }
+
+        searchField.setOnEditorActionListener { textView, i, keyEvent ->
+
+            if (i == EditorInfo.IME_ACTION_SEARCH){
+                keyboardControl(false)
+
+                return@setOnEditorActionListener true
+            }
+            else return@setOnEditorActionListener false
+
+        }
+
     }
 
     private fun init() {
@@ -118,6 +160,10 @@ class SmsChatActivity : AppCompatActivity() {
         mainPanel = findViewById(R.id.main_text_edit_panel_chat)
         rightDownPanel = findViewById(R.id.down_panel_chat)
         messageChatList = findViewById(R.id.msg_space_chat)
+        searchButton = findViewById(R.id.search_button_chat)
+        searchTopPanel = findViewById(R.id.search_top_panel_chat)
+        standartTopPanel = findViewById(R.id.standart_top_panel_chat)
+        searchField = findViewById(R.id.edit_text_search_top_panel_chat)
 
         mainPanelHeight = mainPanel.layoutParams.height
         rightDownPanelHeight = rightDownPanel.layoutParams.height
@@ -126,7 +172,6 @@ class SmsChatActivity : AppCompatActivity() {
 
         contactNameText = intent.getStringExtra("contactName").toString()
         contactNumber = intent.getStringExtra("contactNumber").toString()
-        //messageList = intent.getSerializableExtra("messageList") as ArrayList<SmsMessage>
 
         messageList = SmsTools(this).getAllSmsWithContact(contactNumber).sortedBy { it.messageTime }.toMutableList() as ArrayList<SmsMessage>
 
@@ -137,11 +182,23 @@ class SmsChatActivity : AppCompatActivity() {
 
 
         sender = Sender(contactNumber, contactNameText)
-        //sender.setMessages(messageList)
 
         contactNameView.text = sender.senderName
 
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
     }
 
+
+    private fun keyboardControl(controller: Boolean){
+
+        if (controller){
+            val imn = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imn.showSoftInput(searchField, InputMethodManager.SHOW_FORCED)
+        }
+        else{
+            val imn = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imn.hideSoftInputFromWindow(searchField.windowToken, 0)
+        }
+
+    }
 }

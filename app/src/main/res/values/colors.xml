@@ -13,4 +13,12 @@
     <color name="main_color">#FFEECF</color>
     <color name="additional_white">#f2f2ed</color>
 
+    <color name="dark_background">#222222</color>
+    <color name="light_main">#282828</color>
+    <color name="text_color">#626262</color>
+    <color name="selected_color">#EBBF10</color>
+    <color name="avatar_color">#F1C40F</color>
+    <color name="contact_name">#E9E9E9</color>
+    <color name="addition_text_color">#888888</color>
+
 </resources>
