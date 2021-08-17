@@ -37,7 +37,12 @@ class SmsListAdapter(private var data: ArrayList<Sender>, private var context: C
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.senderName.text = data[position].senderName
-        holder.firstLetter.text = data[position].senderName[0].toString().toUpperCase()
+
+        var letter = data[position].senderName[0].toString().toUpperCase()
+
+        if (letter == "+") letter = data[position].senderName[1].toString().toUpperCase()
+
+        holder.firstLetter.text = letter
 
         val date = ConvertTools.timestampToDate("HH:mm", data[position].firstMessage.messageTime)
         holder.time.text = date

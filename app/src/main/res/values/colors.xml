@@ -13,6 +13,8 @@
     <color name="main_color">#FFEECF</color>
     <color name="additional_white">#f2f2ed</color>
 
+
+    <!--Dark Theme-->
     <color name="dark_background">#222222</color>
     <color name="light_main">#282828</color>
     <color name="text_color">#626262</color>
@@ -20,5 +22,11 @@
     <color name="avatar_color">#F1C40F</color>
     <color name="contact_name">#E9E9E9</color>
     <color name="addition_text_color">#888888</color>
+
+    <!--White Theme-->
+    <color name="light_background">#F1F1F1</color>
+    <color name="light_text_color">#00183380</color>
+    <color name="light_contact_name">#001833</color>
+    <color name="light_avatar_color">#2F80ED</color>
 
 </resources>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainChatsScreen"
-    android:background="@color/dark_background">
+    android:background="@color/light_background">
 
     <ScrollView
         android:layout_alignParentTop="true"
@@ -35,9 +35,10 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
                     app:cardCornerRadius="15dp"
-                    app:cardBackgroundColor="@color/light_main"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_toStartOf="@id/folders_block_main_screen"
+
                     android:layout_marginEnd="10dp"
-                    android:layout_toStartOf="@id/settings_block_main_screen"
                     >
 
                     <RelativeLayout
@@ -49,46 +50,90 @@
                             android:id="@+id/search_icon_main_screen"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_search"
-                            app:tint="@color/white"
+                            android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
                             android:layout_alignParentBottom="true"
+                            android:layout_marginStart="10.53dp"
                             android:layout_marginTop="13dp"
                             android:layout_marginBottom="13dp"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginStart="10.53dp"
+                            android:src="@drawable/ic_search"
+                            app:tint="@color/black"
 
                             />
 
 
                         <EditText
                             android:id="@+id/search_main_screen"
+                            style="@style/DefaultText"
                             android:layout_width="match_parent"
-                            android:layout_height="19dp"
 
-                            android:layout_toEndOf="@id/search_icon_main_screen"
-                            android:layout_marginStart="15.64dp"
-                            android:background="@color/transparent"
+                            android:layout_height="19dp"
                             android:layout_alignParentTop="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginBottom="18dp"
-                            android:layout_marginTop="17dp"
                             android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="15.64dp"
+                            android:layout_marginTop="17dp"
                             android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="18dp"
+                            android:layout_toEndOf="@id/search_icon_main_screen"
+                            android:background="@color/transparent"
                             android:hint="Search"
-                            android:paddingStart="3dp"
-                            android:textColorHint="@color/text_color"
                             android:imeOptions="actionSearch"
                             android:inputType="text"
                             android:maxLines="1"
+                            android:paddingStart="3dp"
 
-                            style="@style/DefaultText"
+                            android:textColorHint="@color/text_color"
+
                             />
-
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
 
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/folders_block_main_screen"
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="15dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_toStartOf="@id/settings_block_main_screen"
+                    android:layout_marginEnd="10dp"
+                    app:cardCornerRadius="15dp"
+
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:background="@color/transparent"
+
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+
+                            android:src="@drawable/ic_folder"
+
+                            android:layout_marginTop="11dp"
+                            android:layout_marginStart="11dp"
+                            android:layout_marginBottom="11dp"
+                            android:layout_marginEnd="11dp"
+
+
+                            />
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/settings_block_main_screen"
@@ -98,7 +143,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="15dp"
-                    app:cardBackgroundColor="@color/light_main"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="15dp"
 
                     >
@@ -113,18 +158,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
-                            android:src="@drawable/ic_setting"
-                            android:background="@color/transparent"
-
+                            android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
+
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentBottom="true"
-                            android:layout_alignParentStart="true"
-
+                            android:layout_marginStart="11dp"
                             android:layout_marginTop="11dp"
+
                             android:layout_marginEnd="11dp"
                             android:layout_marginBottom="11dp"
-                            android:layout_marginStart="11dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/ic_setting"
+                            app:tint="@color/black"
 
                             />
 
@@ -139,88 +185,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp">
 
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-
-                    app:cardBackgroundColor="@color/light_main"
-                    app:cardCornerRadius="15dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    >
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_toStartOf="@id/all_button_main_screen"
-                            android:layout_marginEnd="7dp"
-                            />
-
-                        <RelativeLayout
-                            android:id="@+id/all_button_main_screen"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginTop="12dp"
-                            android:layout_marginEnd="10dp">
-
-                            <ImageView
-                                android:id="@+id/users_icon_main_screen"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-
-                                android:src="@drawable/ic__user"
-
-                                />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="24dp"
-                                android:text="All"
-                                android:gravity="center"
-
-                                android:layout_toEndOf="@id/users_icon_main_screen"
-                                android:layout_marginStart="13.49dp"
-
-                                android:textColor="@color/selected_color"
-                                android:textStyle="normal"
-
-                                style="@style/DefaultText"
-
-                                />
-
-                        </RelativeLayout>
-
-
-
-                    </RelativeLayout>
-
-                </androidx.cardview.widget.CardView>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp">
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/message_list_main_screen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/message_item_main_screen"
-                    android:paddingTop="2dp"
                     android:nestedScrollingEnabled="false"
-                    />
+                    android:paddingTop="2dp"
+                    tools:listitem="@layout/message_item_main_screen" />
 
             </RelativeLayout>
 

@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        app:cardBackgroundColor="@color/light_main"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="15dp"
 
         android:layout_alignParentStart="true"
@@ -28,7 +28,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:cardCornerRadius="360dp"
-                app:cardBackgroundColor="@color/avatar_color"
+                app:cardBackgroundColor="@color/light_avatar_color"
 
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
@@ -54,54 +54,54 @@
 
             <TextView
                 android:id="@+id/contact_name"
+                style="@style/ContactName"
                 android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content"
 
-                android:text="Girlfriend"
-
-                android:layout_toEndOf="@id/avatar_circle"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="14dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="14dp"
+                android:layout_toEndOf="@id/avatar_circle"
 
-                style="@style/ContactName"
+                android:text="Girlfriend"
 
                 />
 
             <TextView
                 android:id="@+id/short_message"
+                style="@style/DefaultText"
                 android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content"
 
-                style="@style/DefaultText"
-
-                android:textFontWeight="400"
-
                 android:layout_below="@id/contact_name"
-                android:layout_toEndOf="@id/avatar_circle"
 
                 android:layout_marginStart="10dp"
-                android:text="Haha that's terrifying 😂"
-                android:textColor="@color/addition_text_color"
-                android:maxLines="1"
-                android:layout_toStartOf="@id/time_block"
                 android:layout_marginEnd="5dp"
+
+                android:layout_toStartOf="@id/time_block"
+                android:layout_toEndOf="@id/avatar_circle"
+                android:maxLines="1"
+                android:text="Haha that's terrifying 😂"
+                android:textColor="@color/light_contact_name"
+                android:textFontWeight="400"
 
                 />
 
             <TextView
                 android:id="@+id/time_block"
+                style="@style/TimeBlock"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
 
-                android:layout_alignParentBottom="true"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
 
-                android:layout_marginBottom="15dp"
+                android:layout_alignParentBottom="true"
                 android:layout_marginEnd="25dp"
-                android:text="07:12"
+                android:layout_marginBottom="15dp"
 
-                style="@style/TimeBlock"
+                android:text="07:12"
 
                 />
 
