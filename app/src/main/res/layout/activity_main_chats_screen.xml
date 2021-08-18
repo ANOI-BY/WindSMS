@@ -38,6 +38,8 @@
                     app:cardBackgroundColor="@color/white"
                     android:layout_toStartOf="@id/folders_block_main_screen"
 
+                    app:cardElevation="0dp"
+
                     android:layout_marginEnd="10dp"
                     >
 
@@ -102,6 +104,8 @@
                     android:layout_marginEnd="10dp"
                     app:cardCornerRadius="15dp"
 
+                    app:cardElevation="0dp"
+
                     >
 
                     <RelativeLayout
@@ -145,6 +149,8 @@
                     android:layout_marginEnd="15dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="15dp"
+
+                    app:cardElevation="0dp"
 
                     >
 
@@ -191,7 +197,10 @@
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
                     android:paddingTop="2dp"
-                    tools:listitem="@layout/message_item_main_screen" />
+                    tools:listitem="@layout/message_item_main_screen"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+                    />
 
             </RelativeLayout>
 

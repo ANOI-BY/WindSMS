@@ -17,6 +17,8 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
 
+        app:cardElevation="0dp"
+
         >
 
         <RelativeLayout
@@ -85,9 +87,8 @@
                 android:maxLines="1"
                 android:text="Haha that's terrifying 😂"
                 android:textColor="@color/light_contact_name"
-                android:textFontWeight="400"
 
-                />
+                android:textFontWeight="400" />
 
             <TextView
                 android:id="@+id/time_block"
