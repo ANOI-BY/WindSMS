@@ -9,8 +9,10 @@ import android.util.Pair
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.text.isDigitsOnly
 import androidx.recyclerview.widget.RecyclerView
 import com.invisibles.smssorter.Models.Sender
 import com.invisibles.smssorter.R
@@ -26,6 +28,7 @@ class SmsListAdapter(private var data: ArrayList<Sender>, private var context: C
         var senderName: TextView = itemView.findViewById(R.id.contact_name)
         var messageText: TextView = itemView.findViewById(R.id.short_message)
         var firstLetter: TextView = itemView.findViewById(R.id.first_letter)
+        var avatar: ImageView = itemView.findViewById(R.id.contact_avatar)
         var time: TextView = itemView.findViewById(R.id.time_block)
     }
 
@@ -40,7 +43,16 @@ class SmsListAdapter(private var data: ArrayList<Sender>, private var context: C
 
         var letter = data[position].senderName[0].toString().toUpperCase()
 
-        if (letter == "+") letter = data[position].senderName[1].toString().toUpperCase()
+        if (letter == "+" || letter.isDigitsOnly()) {
+
+            holder.firstLetter.visibility = View.GONE
+            holder.avatar.visibility = View.VISIBLE
+
+        }
+        else{
+            holder.firstLetter.visibility = View.VISIBLE
+            holder.avatar.visibility = View.GONE
+        }
 
         holder.firstLetter.text = letter
 

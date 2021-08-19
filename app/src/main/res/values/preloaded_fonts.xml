@@ -6,5 +6,6 @@
         <item>@font/nunito_bold</item>
         <item>@font/nunito_extralight</item>
         <item>@font/nunito_light</item>
+        <item>@font/open_sans</item>
     </array>
 </resources>

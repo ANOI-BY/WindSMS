@@ -7,6 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="accent">#3498DB</color>
+
 
     <color name="transparent">#00000000</color>
     <color name="transparent_50">#7F000000</color>
@@ -28,5 +30,7 @@
     <color name="light_text_color">#00183380</color>
     <color name="light_contact_name">#001833</color>
     <color name="light_avatar_color">#2F80ED</color>
+    <color name="light_time_text">#45001833</color>
+    <color name="light_message_edit_text">#99001833</color>
 
 </resources>

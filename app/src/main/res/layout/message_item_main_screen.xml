@@ -30,7 +30,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:cardCornerRadius="360dp"
-                app:cardBackgroundColor="@color/light_avatar_color"
+                app:cardBackgroundColor="@color/accent"
 
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
@@ -48,8 +48,20 @@
                     android:layout_height="match_parent"
                     android:text="G"
 
+
                     style="@style/AvatarText"
                     android:gravity="center"
+                    />
+
+                <ImageView
+                    android:id="@+id/contact_avatar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+
+                    android:src="@drawable/ic_profile"
+
                     />
 
             </androidx.cardview.widget.CardView>

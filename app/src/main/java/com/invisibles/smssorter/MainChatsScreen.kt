@@ -5,15 +5,20 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.invisibles.smssorter.Adapters.SmsListAdapter
 import com.invisibles.smssorter.Models.Sender
 import com.invisibles.smssorter.Models.SmsMessage
+import com.invisibles.smssorter.Tools.AnimationTools
 import com.invisibles.smssorter.Tools.SmsTools
 import java.util.*
 import kotlin.collections.ArrayList
+
+private const val animationDelay = 0.3f
 
 class MainChatsScreen : AppCompatActivity() {
 
@@ -39,6 +44,10 @@ class MainChatsScreen : AppCompatActivity() {
 
         messageList.layoutManager = LinearLayoutManager(this)
         messageList.adapter = adapterMessage
+
+        val anim = AnimationUtils.loadAnimation(this, R.anim.contacts_animation)
+        val controller = LayoutAnimationController(anim, animationDelay)
+        messageList.layoutAnimation = controller
 
         messages = SmsTools(this).getSms() as ArrayList<Sender>
 
@@ -85,6 +94,7 @@ class MainChatsScreen : AppCompatActivity() {
                     }
 
                     adapterMessage.update(searchResult)
+                    messageList.scheduleLayoutAnimation()
                 }
             }
 
@@ -104,6 +114,7 @@ class MainChatsScreen : AppCompatActivity() {
 
                 runOnUiThread {
                     adapterMessage.addPerson(person)
+                    messageList.scheduleLayoutAnimation()
                 }
 
 

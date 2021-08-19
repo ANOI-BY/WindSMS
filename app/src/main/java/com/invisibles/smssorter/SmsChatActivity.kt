@@ -177,6 +177,7 @@ class SmsChatActivity : AppCompatActivity() {
 
         chatAddapter = ChatAddapter(messageList, this, contactNameText)
         messageChatList.layoutManager = LinearLayoutManager(this)
+        chatAddapter.createDateMarks()
         messageChatList.adapter = chatAddapter
         messageChatList.scrollToPosition(messageList.size-1)
 
