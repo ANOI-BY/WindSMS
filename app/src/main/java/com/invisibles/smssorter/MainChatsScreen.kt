@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
@@ -11,9 +12,13 @@ import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.invisibles.smssorter.Adapters.SmsListAdapter
+import com.invisibles.smssorter.Attributes.DBColums
+import com.invisibles.smssorter.Attributes.DBHelper
 import com.invisibles.smssorter.Models.Sender
+import com.invisibles.smssorter.Models.SmsItemDB
 import com.invisibles.smssorter.Models.SmsMessage
 import com.invisibles.smssorter.Tools.AnimationTools
+import com.invisibles.smssorter.Tools.DBTools
 import com.invisibles.smssorter.Tools.SmsTools
 import java.util.*
 import kotlin.collections.ArrayList
@@ -26,6 +31,9 @@ class MainChatsScreen : AppCompatActivity() {
     private lateinit var messageList: RecyclerView
     private lateinit var adapterMessage: SmsListAdapter
     private lateinit var messages: ArrayList<Sender>
+    private lateinit var listOfMessages: ArrayList<SmsMessage>
+    private lateinit var dbMessages: ArrayList<SmsItemDB>
+    private lateinit var db: DBHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,23 +48,98 @@ class MainChatsScreen : AppCompatActivity() {
 
         searchText = findViewById(R.id.search_main_screen)
         messageList = findViewById(R.id.message_list_main_screen)
-        adapterMessage = SmsListAdapter(arrayListOf(), this)
+        db = DBHelper(this)
+
+        listOfMessages = arrayListOf()
 
         messageList.layoutManager = LinearLayoutManager(this)
-        messageList.adapter = adapterMessage
 
         val anim = AnimationUtils.loadAnimation(this, R.anim.contacts_animation)
         val controller = LayoutAnimationController(anim, animationDelay)
         messageList.layoutAnimation = controller
 
-        messages = SmsTools(this).getSms() as ArrayList<Sender>
-
-
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
 
-        loadContacts()
+        Thread{
+            initDB()
+
+            loadContacts()
+        }.start()
 
         initEvents()
+    }
+
+    private fun initDB() {
+
+        listOfMessages = SmsTools(this).getAllSms() as ArrayList<SmsMessage>
+
+        var dbRead = db.readableDatabase
+
+        if (!DBTools.tableIsExist(dbRead, "AllSms")){
+            db.createTable("AllSms", mapOf(
+                "id" to "integer primary key",
+                "contactName" to "text",
+                "contactNumber" to "text",
+                "text" to "text",
+                "time" to "integer",
+                "type" to "integer"
+                ))
+
+        }
+
+        val el = mutableMapOf<String, Sender>()
+
+        if (listOfMessages.isEmpty()){
+
+
+            val sms = DBTools.getData("AllSms", db)
+
+            sms.forEach {
+
+                val number = it.number
+                val name = it.name
+                val nmSr = SmsTools.formatNumber(number)
+                val item = el.getOrDefault(nmSr, Sender(number, name))
+                item.addMessage(SmsTools.convertDBtoSMS(it))
+                el[nmSr] = item
+
+            }
+
+        }
+
+        else{
+            for (message in listOfMessages){
+
+                if (!DBTools.itemIsExistById(dbRead, "AllSms", message.id)){
+                    dbRead.close()
+                    val contactName = SmsTools(this).getContactName(message.address)
+
+                    DBTools.writeData("AllSms", db, mapOf(
+                        DBColums.SMS.ID to message.id,
+                        DBColums.SMS.NAME to contactName,
+                        DBColums.SMS.NUMBER to message.address,
+                        DBColums.SMS.TEXT to message.text,
+                        DBColums.SMS.TIME to message.time,
+                        DBColums.SMS.TYPE to message.type
+                    ))
+
+                }
+
+                dbRead = db.readableDatabase
+
+                val sms = DBTools.getItemById(dbRead, "AllSms", message.id)
+                val number = sms.number
+                val name = sms.name
+                val nmSr = SmsTools.formatNumber(number)
+                val item = el.getOrDefault(nmSr, Sender(number, name))
+                item.addMessage(SmsTools.convertDBtoSMS(sms))
+                el[nmSr] = item
+            }
+
+        }
+
+        messages = el.values.sortedBy { it.messagesList.first().time }.reversed() as ArrayList<Sender>
+
     }
 
     private fun initEvents() {
@@ -80,7 +163,7 @@ class MainChatsScreen : AppCompatActivity() {
 
                     val searchResult = messages.filter {
                         text in it.senderName.toLowerCase(Locale.ROOT) ||
-                                text in it.firstMessage.messageText.toLowerCase(Locale.ROOT) ||
+                                text in it.firstMessage.text.toLowerCase(Locale.ROOT) ||
                                 it.searchInMessages(text).isNotEmpty()
                     } as ArrayList<Sender>
 
@@ -103,25 +186,12 @@ class MainChatsScreen : AppCompatActivity() {
     }
 
     private fun loadContacts() {
-        val loader = Thread{
 
-            for (i in 0 until messages.size) {
-
-                val person = messages[i]
-                val name = SmsTools(this).getContactName(person.senderNumber)
-                person.senderName = name
-
-
-                runOnUiThread {
-                    adapterMessage.addPerson(person)
-                    messageList.scheduleLayoutAnimation()
-                }
-
-
-            }
-
+        runOnUiThread {
+            adapterMessage = SmsListAdapter(messages, this)
+            messageList.adapter = adapterMessage
+            messageList.scheduleLayoutAnimation()
         }
 
-        loader.start()
     }
 }

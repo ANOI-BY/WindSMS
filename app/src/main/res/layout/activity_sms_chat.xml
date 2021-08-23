@@ -118,15 +118,14 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:paddingTop="10dp"
         android:id="@+id/msg_space_chat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
         android:layout_below="@+id/top_tool_bar_chat"
-        tools:listitem="@layout/chat_message_left"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="69dp"
-        />
+        android:paddingTop="10dp"
+        tools:listitem="@layout/chat_message_left" />
 
         <RelativeLayout
             android:id="@+id/down_panel_chat"
@@ -198,7 +197,7 @@
                             android:layout_marginTop="15dp"
                             android:layout_marginEnd="27dp"
                             android:layout_marginBottom="16dp"
-                            android:layout_toStartOf="@+id/button_voice_chat"
+                            android:layout_toStartOf="@+id/button_send_voice_chat"
                             android:background="@color/transparent"
                             android:hint="Введите текст"
                             android:inputType="textMultiLine"
@@ -207,7 +206,7 @@
 
 
                         <ImageButton
-                            android:id="@+id/button_voice_chat"
+                            android:id="@+id/button_send_voice_chat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"

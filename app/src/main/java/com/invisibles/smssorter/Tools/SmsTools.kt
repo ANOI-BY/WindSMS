@@ -8,9 +8,40 @@ import android.util.Log
 import android.widget.Toast
 import com.invisibles.smssorter.Attributes.LogName
 import com.invisibles.smssorter.Models.Sender
+import com.invisibles.smssorter.Models.SmsItemDB
 import com.invisibles.smssorter.Models.SmsMessage
 
 class SmsTools(private var context: Context) {
+
+    companion object{
+
+        fun convertDBtoSMS(el: SmsItemDB): SmsMessage {
+
+            return SmsMessage(
+                id = el.id,
+                text = el.text,
+                time = el.time,
+                type = el.type,
+                address = el.number
+            )
+
+        }
+
+        fun formatNumber(number: String): String {
+
+            var nmSr = number
+
+            when {
+                number[0] == '+' -> nmSr = number.substring(2, number.length)
+                number[0] == '7' -> nmSr = number.substring(1, number.length)
+                number[0] == '8' -> nmSr = number.substring(1, number.length)
+            }
+
+            return nmSr
+
+        }
+
+    }
 
     fun getSms(): List<Sender> {
         val allSms = getAllSms()
@@ -19,22 +50,18 @@ class SmsTools(private var context: Context) {
 
             val number = it.address
 
-            var numberSearch = number
-
-            if (number[0].equals('+')) numberSearch = number.substring(2, number.length)
-            else if (number[0].equals('7')) numberSearch = number.substring(1, number.length)
-            else if (number[0].equals('8')) numberSearch = number.substring(1, number.length)
+            val numberSearch = formatNumber(number)
 
             val item = smsList.getOrDefault(numberSearch, Sender(number, number))
             item.addMessage(it)
             smsList[numberSearch] = item
 
         }
-        return smsList.values.sortedBy { it.messagesList.first().messageTime }.reversed()
+        return smsList.values.sortedBy { it.messagesList.first().time }.reversed()
 
     }
 
-    private fun getAllSms(): List<SmsMessage> {
+    fun getAllSms(): List<SmsMessage> {
         val cr = context.contentResolver
         val c = cr.query(
             Telephony.Sms.CONTENT_URI,
@@ -79,7 +106,7 @@ class SmsTools(private var context: Context) {
             }
         }
 
-        return smsList.sortedBy { it.messageTime }.reversed()
+        return smsList.sortedBy { it.time }.reversed()
     }
 
     fun getAllSmsWithContact(number: String): List<SmsMessage> {

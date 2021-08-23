@@ -69,20 +69,20 @@ class ChatAddapter(private var data: ArrayList<SmsMessage>, private val context:
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        if (data[position].messageType == MSG_TYPE_RIGHT || data[position].messageType == MSG_TYPE_LEFT){
-            holder.messageText.text = data[position].messageText
-            val date = ConvertTools.timestampToDate("HH:mm", data[position].messageTime)
+        if (data[position].type == MSG_TYPE_RIGHT || data[position].type == MSG_TYPE_LEFT){
+            holder.messageText.text = data[position].text
+            val date = ConvertTools.timestampToDate("HH:mm", data[position].time)
             holder.time.text = date
         }
 
-        if(data[position].messageType == MSG_TYPE_RIGHT){
+        if(data[position].type == MSG_TYPE_RIGHT){
             holder.textBlock.setBackgroundResource(R.drawable.message_background_right)
         }
-        else if(data[position].messageType == MSG_TYPE_LEFT){
+        else if(data[position].type == MSG_TYPE_LEFT){
             holder.textBlock.setBackgroundResource(R.drawable.message_background)
         }
-        else if (data[position].messageType == DATE_TYPE){
-            holder.dateText.text = ConvertTools.timestampToDate("dd MMMM", data[position].messageTime)
+        else if (data[position].type == DATE_TYPE){
+            holder.dateText.text = ConvertTools.timestampToDate("dd MMMM", data[position].time)
         }
 
     }
@@ -92,7 +92,7 @@ class ChatAddapter(private var data: ArrayList<SmsMessage>, private val context:
     }
 
     override fun getItemViewType(position: Int): Int {
-        return data[position].messageType
+        return data[position].type
     }
 
     fun update(list: ArrayList<SmsMessage>){
@@ -102,26 +102,36 @@ class ChatAddapter(private var data: ArrayList<SmsMessage>, private val context:
 
     fun createDateMarks(){
 
+        val x = true
+        var i = 0
 
-        for (i in 0 until data.size){
+        while (x){
 
-            Log.i(LogName.DebugLog, data[i].messageText)
+            if (i == data.size){
+                break
+            }
 
             val el = data[i]
 
-            if (i+1 < data.size-1){
+            if (i == 0){
+                data.add(0, SmsMessage(0, "DATE", el.time, type = 3, address = "1"))
+            }
+
+            if (i+1 < data.size){
                 val el2 = data[i+1]
 
-                val day = ConvertTools.timestampToDate("dd", el.messageTime).toInt()
-                val day2 = ConvertTools.timestampToDate("dd", el2.messageTime).toInt()
+                val day = ConvertTools.timestampToDate("dd", el.time).toInt()
+                val day2 = ConvertTools.timestampToDate("dd", el2.time).toInt()
 
                 if (day != day2){
-                    data.add(i+1, SmsMessage(0, "DATE", el2.messageTime, messageType = 3, address = "1"))
+                    data.add(i+1, SmsMessage(0, "DATE", el2.time, type = 3, address = "1"))
                 }
 
             }
             else{
             }
+
+            i += 1
 
 
 

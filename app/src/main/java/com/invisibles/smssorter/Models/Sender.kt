@@ -31,7 +31,7 @@ data class Sender(var senderNumber: String,
     }
 
     fun searchInMessages(message: String): List<SmsMessage> {
-        return messagesList.filter { message in it.messageText.toLowerCase() }
+        return messagesList.filter { message in it.text.toLowerCase() }
 
     }
 }

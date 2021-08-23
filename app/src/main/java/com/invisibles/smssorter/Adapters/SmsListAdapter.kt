@@ -56,11 +56,11 @@ class SmsListAdapter(private var data: ArrayList<Sender>, private var context: C
 
         holder.firstLetter.text = letter
 
-        val date = ConvertTools.timestampToDate("HH:mm", data[position].firstMessage.messageTime)
+        val date = ConvertTools.timestampToDate("HH:mm", data[position].firstMessage.time)
         holder.time.text = date
 
 
-        var text = data[position].firstMessage.messageText
+        var text = data[position].firstMessage.text
 
         if (text.length >= 31 && text[30].isDefined()) {
 
