@@ -4,6 +4,8 @@ import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import com.invisibles.smssorter.Attributes.DBHelper
+import com.invisibles.smssorter.Attributes.DBTables
+import com.invisibles.smssorter.Models.FolderItemDB
 import com.invisibles.smssorter.Models.SmsItemDB
 
 class DBTools {
@@ -25,21 +27,24 @@ class DBTools {
             return rowId
         }
 
-        fun getData(tableName: String, dbHelper: DBHelper): ArrayList<SmsItemDB> {
+        fun getData(tableName: String, dbHelper: DBHelper): ArrayList<Any> {
 
             if (tableIsExist(dbHelper.readableDatabase, tableName)){
 
                 val db = dbHelper.readableDatabase
                 val cursor = db.query(tableName, null, null, null, null, null, null)
 
-                val elements = arrayListOf<SmsItemDB>()
+                val elements = arrayListOf<Any>()
 
                 if (cursor.moveToFirst()){
 
                     do {
 
-                        if (tableName == "AllSms"){
+                        if (tableName == DBTables.SMS){
                             elements.add(SmsItemDB(cursor))
+                        }
+                        else if (tableName == DBTables.FOLDERS){
+                            elements.add(FolderItemDB(cursor))
                         }
 
                     } while (cursor.moveToNext())
@@ -56,7 +61,7 @@ class DBTools {
         fun tableIsExist(db: SQLiteDatabase, tableName: String): Boolean {
 
             try {
-                val cursor = db.rawQuery("select DISTINCT * from $tableName", null)
+                val cursor = db.rawQuery("select COUNT(*) from $tableName", null)
                 return cursor.use { return it.count > 0 }
 
             }

@@ -2,9 +2,10 @@ package com.invisibles.smssorter.Attributes
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 
-class DBHelper(context: Context): SQLiteOpenHelper(context, "WindSMS", null, 1) {
+class DBHelper(context: Context): SQLiteOpenHelper(context, "WindSMSDB", null, 1) {
 
     private var db: SQLiteDatabase = writableDatabase
 
@@ -30,8 +31,12 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, "WindSMS", null, 1) 
         }
 
         sql += " );"
+        try{
+            db.execSQL(sql)
+        }
+        catch (e: SQLiteException){
 
-        db.execSQL(sql)
+        }
 
     }
 }

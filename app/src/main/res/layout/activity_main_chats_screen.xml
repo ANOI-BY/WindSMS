@@ -7,7 +7,21 @@
     tools:context=".MainChatsScreen"
     android:background="@color/light_background">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_chat_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_edit_square"
+        android:layout_marginTop="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="35dp"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="@color/accent"
+        />
+
     <ScrollView
+        android:id="@+id/chats_scroll"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
@@ -114,6 +128,7 @@
 
 
                         <ImageView
+                            android:id="@+id/folder_icon_main_screen"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -129,8 +144,6 @@
                             android:layout_marginEnd="11dp"
                             android:layout_marginBottom="11dp"
                             android:src="@drawable/ic_folder"
-
-
                             />
 
                     </RelativeLayout>
@@ -196,19 +209,14 @@
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
                     android:paddingTop="2dp"
-                    tools:listitem="@layout/message_item_main_screen"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/message_item_main_screen"
 
                     />
 
             </RelativeLayout>
 
         </LinearLayout>
-
-
-
-
-
 
     </ScrollView>
 

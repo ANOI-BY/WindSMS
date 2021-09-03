@@ -1,12 +1,14 @@
 <resources>
     <string name="app_name">Wind SMS</string>
     <string name="title_activity_splash">SplashActivity</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
     <string name="hello_world">Hello Square World!</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="search_text">Поиск...</string>
+
+    <string name="search_text">Search…</string>
+    <string name="welcome_text">Welcome!</string>
+    <string name="welcome_warning_text">You need to install Wind SMS as the main application for SMS. This will ensure that all the functions of the application work correctly</string>
+    <string name="default_app_text">Make it the default application</string>
+    <string name="privacy_text">By continuing, you accept our <a href="https://google.com">Privacy Policy</a> and <a href="https://google.com">User Agreement</a></string>
+    <string name="accept_button">Grant access</string>
+
 </resources>

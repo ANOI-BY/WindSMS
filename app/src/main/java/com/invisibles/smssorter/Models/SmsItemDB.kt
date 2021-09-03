@@ -11,6 +11,7 @@ data class SmsItemDB(private val c: Cursor?) {
     var text: String = ""
     var time: Long = 0
     var type: Int = 0
+    var toFolder: Int = 0
 
     init {
         if (c != null){
@@ -20,6 +21,7 @@ data class SmsItemDB(private val c: Cursor?) {
             val textColIndex = c.getColumnIndex(DBColums.SMS.TEXT)
             val timeColIndex = c.getColumnIndex(DBColums.SMS.TIME)
             val typeColIndex = c.getColumnIndex(DBColums.SMS.TYPE)
+            val toFolderIndex = c.getColumnIndex(DBColums.SMS.TO_FOLDER)
 
             id = c.getInt(idColIndex)
             name = c.getString(nameColIndex)
@@ -27,6 +29,7 @@ data class SmsItemDB(private val c: Cursor?) {
             text = c.getString(textColIndex)
             time = c.getLong(timeColIndex)
             type = c.getInt(typeColIndex)
+            toFolder = c.getInt(toFolderIndex)
         }
 
     }

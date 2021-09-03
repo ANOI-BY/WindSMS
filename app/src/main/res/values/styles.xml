@@ -71,4 +71,40 @@
 
     </style>
 
+    <style name="WelcomeText">
+
+        <item name="fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight">700</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/accent</item>
+        <item name="android:gravity">center</item>
+
+    </style>
+
+    <style name="WelcomeWarningText">
+
+        <item name="android:textFontWeight">600</item>
+        <item name="fontFamily">@font/open_sans</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+
+    </style>
+
+    <style name="WelcomeCheckBoxText">
+
+        <item name="android:textFontWeight">600</item>
+        <item name="fontFamily">@font/open_sans</item>
+        <item name="android:textSize">14sp</item>
+
+    </style>
+
+    <style name="StandartText">
+
+        <item name="fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight">700</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/light_contact_name</item>
+
+    </style>
+
 </resources>

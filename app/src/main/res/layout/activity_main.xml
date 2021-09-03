@@ -4,9 +4,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/main_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_elements02_1" />
+
+
+    <TextView
+        android:id="@+id/welcome_text"
+        style="@style/WelcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_below="@id/main_img"
+        android:layout_marginTop="-30dp"
+
+        android:text="@string/welcome_text" />
+
+
+    <TextView
+        android:id="@+id/welcome_warning_text"
+        style="@style/WelcomeWarningText"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_below="@id/welcome_text"
+        android:layout_marginTop="20dp"
+
+        android:text="@string/welcome_warning_text" />
+
+
+    <CheckBox
+        android:id="@+id/welcome_checkbox"
+        style="@style/WelcomeCheckBoxText"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/default_app_text"
+        android:layout_below="@id/welcome_warning_text"
+        android:layout_marginTop="20dp"
+        android:layout_above="@id/welcome_privacy"
+        android:layout_marginBottom="20dp"
+
+
+        android:buttonTint="@color/accent" />
+
+
+    <TextView
+        android:id="@+id/welcome_privacy"
+        style="@style/WelcomeCheckBoxText"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="center"
+        android:text="@string/privacy_text"
+        android:layout_above="@id/accept_button"
+        android:layout_marginBottom="20dp"
+        android:background="@color/transparent"
+        android:textColorLink="@color/accent"
+        />
+
+
+    <Button
+        android:id="@+id/accept_button"
+        style="@style/WelcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+
+        android:background="@drawable/accent_block"
+        android:text="@string/accept_button"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginBottom="25dp"
+        />
 
 
 </RelativeLayout>

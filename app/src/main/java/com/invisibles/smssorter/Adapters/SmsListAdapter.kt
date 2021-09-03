@@ -1,5 +1,6 @@
 package com.invisibles.smssorter.Adapters
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Context
@@ -92,17 +93,16 @@ class SmsListAdapter(private var data: ArrayList<Sender>, private var context: C
 
     }
 
-
     override fun getItemCount(): Int {
         return data.size
     }
-
 
     fun update(list: ArrayList<Sender>) {
         this.data = list
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun addPerson(el: Sender) {
         data.add(el)
         notifyDataSetChanged()

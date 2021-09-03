@@ -1,17 +1,32 @@
 package com.invisibles.smssorter
 
+import android.content.ComponentName
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Telephony
+import android.text.Html
+import android.text.method.LinkMovementMethod
+import android.text.util.Linkify
 import android.util.Log
+import android.view.animation.AnimationUtils
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.invisibles.smssorter.Attributes.LogName
+import com.invisibles.smssorter.Receiver.SmsReceiver
 
 private const val REQUEST_CODE = 101
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var acceptButton: Button
+    private lateinit var textPrivacy: TextView
+    private lateinit var checkBox: CheckBox
 
     private var permissions = arrayOf(
         android.Manifest.permission.READ_SMS,
@@ -21,9 +36,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setupPermissions()
 
-        if (checkPermissions()) init()
+        if (checkPermissions()) startNextActivity()
+
+        init()
 
     }
 
@@ -45,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun makePermissionRequest() {
         ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE)
-        if (checkPermissions()) init()
+        if (checkPermissions()) startNextActivity()
     }
 
     override fun onRequestPermissionsResult(
@@ -53,15 +69,56 @@ class MainActivity : AppCompatActivity() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-       //TODO
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (checkPermissions()) startNextActivity()
+    }
+
+    private fun startNextActivity(){
+        val intent = Intent(this, MainChatsScreen::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun setDefault(){
+
+        val intent = Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT)
+        intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, packageName)
+        startActivity(intent)
+    }
+
+    private fun isDefaultApp(): Boolean {
+        return packageName.equals(Telephony.Sms.getDefaultSmsPackage(this))
     }
 
     private fun init() {
 
-        val intent = Intent(this, MainChatsScreen::class.java)
-        startActivity(intent)
-        finish()
+        acceptButton = findViewById(R.id.accept_button)
+        textPrivacy = findViewById(R.id.welcome_privacy)
+        checkBox = findViewById(R.id.welcome_checkbox)
+        registerReceiver(SmsReceiver(), IntentFilter("android.intent.action.TIME_TICK"))
+        //Linkify.addLinks(textPrivacy, Linkify.WEB_URLS)
+
+        textPrivacy.movementMethod = LinkMovementMethod.getInstance()
+        textPrivacy.highlightColor = getColor(R.color.transparent)
+
+        acceptButton.setOnClickListener {
+
+            if (checkBox.isChecked) {
+
+                //setDefault()
+
+                if (checkPermissions()) startNextActivity()
+
+                setupPermissions()
+            }
+            else{
+
+                val anim = AnimationUtils.loadAnimation(this, R.anim.shake)
+                checkBox.startAnimation(anim)
+
+            }
+
+        }
 
     }
 
