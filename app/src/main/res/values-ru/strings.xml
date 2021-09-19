@@ -10,5 +10,12 @@
     <string name="default_app_text">Сделать приложением по умолчанию</string>
     <string name="privacy_text">Продолжая, Вы принимаете нашу <a href="https://google.com" clickable="true">Политику конфидециальности</a> и <a href="https://google.com">Пользовательское соглашение</a></string>
     <string name="accept_button">Предоставить доступ</string>
+    <string name="main_block_search">Поиск</string>
+    <string name="folder_create_name">Название папки</string>
+    <string name="folder_create_description">Описание</string>
+    <string name="folder_create_filters">Фильтры</string>
+    <string name="folder_create_add_filter">Добавить фильтр</string>
+
+
 
 </resources>

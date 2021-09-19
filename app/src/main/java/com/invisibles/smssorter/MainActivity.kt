@@ -81,9 +81,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun setDefault(){
 
-        val intent = Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT)
-        intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, packageName)
-        startActivity(intent)
+        val setSmsAppIntent = Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT)
+        setSmsAppIntent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, packageName)
+        startActivity(setSmsAppIntent)
     }
 
     private fun isDefaultApp(): Boolean {

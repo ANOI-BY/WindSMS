@@ -26,8 +26,9 @@
     <color name="addition_text_color">#888888</color>
 
     <!--White Theme-->
-    <color name="light_background">#F1F1F1</color>
+    <color name="light_background">#F4F5F8</color>
     <color name="light_text_color">#00183380</color>
+    <color name="light_edit_color">#e5e8ea</color>
     <color name="light_contact_name">#001833</color>
     <color name="light_avatar_color">#2F80ED</color>
     <color name="light_time_text">#45001833</color>

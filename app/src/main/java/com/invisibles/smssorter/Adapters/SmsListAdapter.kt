@@ -6,6 +6,7 @@ import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.util.Pair
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.text.isDigitsOnly
 import androidx.recyclerview.widget.RecyclerView
+import com.invisibles.smssorter.Attributes.LogName
 import com.invisibles.smssorter.Models.Sender
 import com.invisibles.smssorter.R
 import com.invisibles.smssorter.SmsChatActivity
@@ -73,13 +75,14 @@ class SmsListAdapter(private var data: ArrayList<Sender>, private var context: C
                 text = text.substring(0, 30) + "..."
             }
         }
+
         holder.messageText.text = text
 
         holder.itemView.setOnClickListener {
 
-            var intent = Intent(context, SmsChatActivity::class.java)
+            val intent = Intent(context, SmsChatActivity::class.java)
 
-            var options = ActivityOptions.makeSceneTransitionAnimation(
+            val options = ActivityOptions.makeSceneTransitionAnimation(
                 context as Activity,
                 Pair(holder.senderName, "ContactNameTransition")
             )
@@ -91,12 +94,16 @@ class SmsListAdapter(private var data: ArrayList<Sender>, private var context: C
 
         }
 
+        holder.itemView.setOnLongClickListener {
+            Log.i(LogName.DebugLog, "YES")
+            return@setOnLongClickListener true }
     }
 
     override fun getItemCount(): Int {
         return data.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun update(list: ArrayList<Sender>) {
         this.data = list
         notifyDataSetChanged()

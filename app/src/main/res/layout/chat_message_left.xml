@@ -31,7 +31,6 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
-                android:layout_marginBottom="10dp"
                 android:autoLink="all"
                 android:linksClickable="true"
                 android:text="test"
@@ -43,24 +42,23 @@
                 style="@style/MessageText"
                 />
 
+            <TextView
+                android:id="@+id/message_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TimeBlock"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="11:50"
+
+                android:layout_below="@id/message_left_msg_text"
+                android:layout_marginStart="20dp"
+                android:lines="1"
+                />
+
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/message_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/TimeBlock"
-        android:layout_marginTop="5dp"
-        android:text="11:50"
-
-        android:layout_alignBottom="@id/message_left_text_block"
-        android:layout_toEndOf="@id/message_left_text_block"
-        android:layout_marginBottom="12dp"
-        android:layout_marginStart="-40dp"
-
-        android:lines="1"
-        />
 
 </RelativeLayout>

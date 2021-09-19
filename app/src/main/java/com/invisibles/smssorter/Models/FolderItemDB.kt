@@ -3,7 +3,7 @@ package com.invisibles.smssorter.Models
 import android.database.Cursor
 import com.invisibles.smssorter.Attributes.DBColums
 
-data class FolderItemDB(private val c: Cursor?) {
+data class FolderItemDB(private val c: Cursor? = null) {
 
     var id: Int = 0
     var name: String = ""

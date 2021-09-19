@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddNewFolder">
+
+    <RelativeLayout
+        android:id="@+id/main_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+
+            android:backgroundTint="@color/transparent"
+            android:src="@drawable/ic_arrow_left" />
+
+        <ImageButton
+            android:id="@+id/add_folder_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"
+
+            android:layout_marginEnd="15dp"
+            android:backgroundTint="@color/transparent"
+            android:src="@drawable/ic_tick_square" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/folder_icon_block"
+            android:layout_width="174dp"
+            android:layout_height="174dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="75dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="30dp"
+
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/folder_icon"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginTop="55dp"
+                    android:src="@drawable/ic_folder"
+
+                    />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="15dp"
+                    app:cardBackgroundColor="@color/light_edit_color"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="0dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <ImageButton
+                            android:id="@+id/edit_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/transparent"
+
+                            android:src="@drawable/ic_edit" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            style="@style/WelcomeCheckBoxText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/folder_icon_block"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="39dp"
+
+            android:text="@string/folder_create_name"
+            android:textColor="@color/light_contact_name" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_below="@id/folder_icon_block"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="10dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="15dp">
+
+            <EditText
+                android:id="@+id/folder_name_text_edit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLines="1"
+                android:minLines="1"
+                android:paddingStart="15dp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            style="@style/WelcomeCheckBoxText"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/folder_icon_block"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="139dp"
+            android:text="@string/folder_create_description"
+            android:textColor="@color/light_contact_name" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_below="@id/folder_icon_block"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginEnd="10dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="15dp">
+
+            <EditText
+                android:id="@+id/folder_description_text_edit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLines="1"
+                android:minLines="1"
+                android:paddingStart="15dp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            style="@style/WelcomeCheckBoxText"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/folder_icon_block"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="249dp"
+            android:text="@string/folder_create_filters"
+            android:textColor="@color/light_contact_name" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_below="@id/folder_icon_block"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="279dp"
+            android:layout_marginEnd="10dp"
+            app:cardBackgroundColor="@color/accent"
+            app:cardCornerRadius="15dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/AddFiltersText"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="21dp"
+
+                    android:text="@string/folder_create_add_filter" />
+
+                <ImageButton
+                    android:id="@+id/add_filter"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/transparent"
+                    android:src="@drawable/ic_plus"
+
+                    />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/edit_icons_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent_50"
+        android:visibility="gone">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="15dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="9dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/icons_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/folder_icon_item"
+                android:paddingTop="20dp"
+                android:paddingBottom="12dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="8dp"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
+

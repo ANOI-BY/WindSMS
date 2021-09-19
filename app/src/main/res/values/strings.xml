@@ -10,5 +10,10 @@
     <string name="default_app_text">Make it the default application</string>
     <string name="privacy_text">By continuing, you accept our <a href="https://google.com">Privacy Policy</a> and <a href="https://google.com">User Agreement</a></string>
     <string name="accept_button">Grant access</string>
+    <string name="main_block_search">Search</string>
+    <string name="folder_create_name">Folder name</string>
+    <string name="folder_create_description">Description</string>
+    <string name="folder_create_filters">Filters</string>
+    <string name="folder_create_add_filter">Add filter</string>
 
 </resources>

@@ -60,9 +60,7 @@
                     android:layout_gravity="center"
                     android:visibility="gone"
 
-                    android:src="@drawable/ic_profile"
-
-                    />
+                    android:src="@drawable/ic_profile_chats" />
 
             </androidx.cardview.widget.CardView>
 
